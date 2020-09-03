@@ -31,6 +31,8 @@ class ReserveInterval
         if ($timeFrom->getTimestamp() >= $timeTo->getTimestamp()) {
             throw new ErrorReporting(static::TIME_FROM_GTE_TIME_TO_ERROR_MSG);
         }
+
+        // TODO check restaurant schedule
         
         $this->timeFrom = $timeFrom;
         $this->timeTo   = $timeTo;
@@ -52,7 +54,7 @@ class ReserveInterval
             return false;
         }
 
-        if ($interval->timeTo->getTimestamp() <= $this->timeFrom->getTimestamp()) {
+        if ($interval->getTimeTo()->getTimestamp() <= $this->timeFrom->getTimestamp()) {
             return false;
         }
 

@@ -39,7 +39,7 @@ class Table
     private Hall $hall;
 
     /**
-     * @ORM\OneToMany(targetEntity="Reserve", mappedBy="table")
+     * @ORM\OneToMany(targetEntity="Reserve", where="time_to >= NOW()", mappedBy="table")
      */
     private Collection $reserves;
 
