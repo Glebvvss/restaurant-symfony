@@ -13,6 +13,8 @@ class ReserveInterval
 {
     private const TIME_FROM_GTE_TIME_TO_ERROR_MSG = 'Time from must be lesss then time to';
 
+    private const TIME_NOT_IN_SCHEDULE_ERROR_MSG = 'Time not in restaurant schedule time';
+
     /**
      * @ORM\Column(type="datetime")
      */
@@ -32,7 +34,10 @@ class ReserveInterval
             throw new ErrorReporting(static::TIME_FROM_GTE_TIME_TO_ERROR_MSG);
         }
 
-        // TODO check restaurant schedule
+        $openingHours = new OpeningHours();
+        if ($openingHours->isClosedAt($timeFrom) || $openingHours->isClosedAt($timeTo)) {
+            throw new ErrorReporting(static::TIME_NOT_IN_SCHEDULE_ERROR_MSG);
+        }
         
         $this->timeFrom = $timeFrom;
         $this->timeTo   = $timeTo;
