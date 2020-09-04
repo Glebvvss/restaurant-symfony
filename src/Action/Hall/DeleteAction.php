@@ -3,7 +3,6 @@
 namespace App\Action\Hall;
 
 use App\Entity\Hall;
-use App\Presentation\HallPresentation;
 use Doctrine\ORM\EntityManagerInterface;
 
 class DeleteAction
