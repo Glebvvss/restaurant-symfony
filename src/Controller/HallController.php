@@ -2,33 +2,62 @@
 
 namespace App\Controller;
 
-use DateTime;
-use App\Entity\Hall;
-use App\Entity\Table;
-use App\Entity\Reserve;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Api\Json\Api;
+use App\Action\Hall\CreateAction;
+use App\Action\Hall\DeleteAction;
+use App\Action\Hall\FindOneAction;
+use App\Action\Hall\FindAllAction;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HallController
 {
-    private EntityManagerInterface $em;
+    private Api $api;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(Api $api)
     {
-        $this->em = $em;
+        $this->api = $api;
     }
 
     /**
-     * @Route("/")
+     * @Route("/hall", methods={"GET"}, name="hall-list")
      */
-    public function index()
+    public function findAll(FindAllAction $action)
     {
-        $hallRepository = $this->em->getRepository(Hall::class);
-        
-        $hall = $hallRepository->find(2);
+        return $this->api
+                    ->makeRequest(fn() => $action->handle())
+                    ->buildResponse();
+    }
 
-        dump($hall->getTables()[0]->getReserves());
-        die;
+    /**
+     * @Route("/hall/{id<\d+>}", methods={"GET"}, name="hall-single")
+     */
+    public function findOne(FindOneAction $action, int $id)
+    {
+        return $this->api
+                    ->makeRequest(fn() => $action->handle($id))
+                    ->buildResponse();
+    }
+
+    /**
+     * @Route("/hall", methods={"POST"}, name="hall-create")
+     */
+    public function create(CreateAction $action, Request $request)
+    {
+        return $this->api
+                    ->makeRequest(fn() => $action->handle(
+                        json_decode($request->getContent())->name
+                    ))
+                    ->buildResponse();
+    }
+
+    /**
+     * @Route("/hall/{id<\d+>}", methods={"DELETE"}, name="hall-delete")
+     */
+    public function delete(DeleteAction $action, int $id)
+    {
+        return $this->api
+                    ->makeRequest(fn() => $action->handle($id))
+                    ->buildResponse();
     }
 }

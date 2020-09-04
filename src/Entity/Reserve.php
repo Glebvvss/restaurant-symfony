@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ReserveRepository;
 
 /**
- * @ORM\Entity(repositoryClass=ReserveRepository::class)
+ * @ORM\Entity()
  */
 class Reserve
 {

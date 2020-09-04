@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity(repositoryClass=TableRepository::class)
+ * @ORM\Entity()
  * @ORM\Table(name="`table`")
  */
 class Table
@@ -39,13 +39,13 @@ class Table
     private Hall $hall;
 
     /**
-     * @ORM\OneToMany(targetEntity="Reserve", where="time_to >= NOW()", mappedBy="table")
+     * @ORM\OneToMany(targetEntity="Reserve", mappedBy="table")
      */
     private Collection $reserves;
 
     public function __construct(Hall $hall, int $number)
     {
-        $this->hall = $hall;
+        $this->hall     = $hall;
         $this->reserves = new ArrayCollection();
         $this->setNumber($number);
     }
