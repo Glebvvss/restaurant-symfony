@@ -64,13 +64,15 @@ class Hall
         $this->name = $name;
     }
 
-    public function addTable(Table $table): void
+    public function addTable(Table $newTable): void
     {
-        if ($this->tableWithNumberExists($table->getNumber())) {
-            throw new ErrorReporting(static::TABLE_WITH_NUMBER_EXISTS_ERROR_MSG);
+        foreach($this->tables as $table) {
+            if ($table->getNumber() === $newTable->getNumber()) {
+                throw new ErrorReporting(static::TABLE_WITH_NUMBER_EXISTS_ERROR_MSG);
+            }
         }
 
-        $this->tables[] = $table;
+        $this->tables[] = $newTable;
     }
 
     public function removeTable(Table $table): void
@@ -85,16 +87,5 @@ class Hall
     public function getTables(): Collection
     {
         return $this->tables;
-    }
-
-    private function tableWithNumberExists(int $number): bool
-    {
-        foreach($this->tables as $table) {
-            if ($table->getNumber() === $number) {
-                return true;
-            }
-        }
-
-        return false;
     }
 }
