@@ -28,12 +28,8 @@ class Reserve
      */
     private ReserveInterval $reserveInterval;
 
-    public function __construct(
-        Table $table, 
-        ReserveInterval $reserveInterval
-    )
+    public function __construct(ReserveInterval $reserveInterval)
     {
-        $this->table           = $table;
         $this->reserveInterval = $reserveInterval;
     }
 

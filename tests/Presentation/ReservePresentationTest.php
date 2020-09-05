@@ -3,7 +3,6 @@
 namespace App\Test\Presentation;
 
 use DateTime;
-use App\Entity\Table;
 use App\Entity\Reserve;
 use App\Entity\ReserveInterval;
 use PHPUnit\Framework\TestCase;
@@ -17,7 +16,6 @@ class ReservePresentationTest extends TestCase
         $timeTo   = '2020-12-12 18:00';
 
         $reserve = new Reserve(
-            new Table(1),
             new ReserveInterval(
                 new DateTime($timeFrom),
                 new DateTime($timeTo)

@@ -3,7 +3,6 @@
 namespace App\Test\Entity;
 
 use DateTime;
-use App\Entity\Hall;
 use App\Entity\Table;
 use App\Entity\Reserve;
 use App\Entity\ReserveInterval;
@@ -22,7 +21,6 @@ class TableTest extends TestCase
     {
         $table = new Table(1);
         $reserve = new Reserve(
-            $table, 
             new ReserveInterval(
                 new DateTime('2020-08-12 18:00:00'),
                 new DateTime('2020-08-12 20:00:00')
@@ -40,7 +38,6 @@ class TableTest extends TestCase
 
         $table = new Table(1);
         $reserve = new Reserve(
-            $table, 
             new ReserveInterval(
                 new DateTime('2020-08-12 18:00:00'),
                 new DateTime('2020-08-12 20:00:00')
@@ -54,7 +51,6 @@ class TableTest extends TestCase
     {
         $table = new Table(1);
         $reserve = new Reserve(
-            $table, 
             new ReserveInterval(
                 new DateTime('2020-08-12 18:00:00'),
                 new DateTime('2020-08-12 20:00:00')
@@ -75,7 +71,6 @@ class TableTest extends TestCase
     {
         $table = new Table(1);
         $reserve1 = new Reserve(
-            $table, 
             new ReserveInterval(
                 new DateTime('2020-08-12 18:00:00'),
                 new DateTime('2020-08-12 20:00:00')
@@ -83,7 +78,6 @@ class TableTest extends TestCase
         );
 
         $reserve2 = new Reserve(
-            $table, 
             new ReserveInterval(
                 new DateTime('2020-08-12 20:00:00'),
                 new DateTime('2020-08-12 21:00:00')
@@ -98,7 +92,6 @@ class TableTest extends TestCase
     {
         $table = new Table(1);
         $reserve1 = new Reserve(
-            $table, 
             new ReserveInterval(
                 new DateTime('2020-08-12 18:00:00'),
                 new DateTime('2020-08-12 20:00:00')
@@ -106,7 +99,6 @@ class TableTest extends TestCase
         );
 
         $reserve2 = new Reserve(
-            $table, 
             new ReserveInterval(
                 new DateTime('2020-08-12 17:30:00'),
                 new DateTime('2020-08-12 18:30:00')

@@ -3,8 +3,6 @@
 namespace App\Test\Entity;
 
 use DateTime;
-use App\Entity\Hall;
-use App\Entity\Table;
 use App\Entity\Reserve;
 use App\Entity\ReserveInterval;
 use PHPUnit\Framework\TestCase;
@@ -16,38 +14,31 @@ class ReserveTest extends TestCase
     {
         $this->expectException(ErrorReporting::class);
 
-        $table = new Table(1);
-
-        $reserveInterval = new ReserveInterval(
-            new DateTime('2020-08-12 18:00:00'),
-            new DateTime('2020-08-12 16:00:00')
+        new Reserve(
+            new ReserveInterval(
+                new DateTime('2020-08-12 18:00:00'),
+                new DateTime('2020-08-12 16:00:00')
+            )
         );
-
-        new Reserve($table, $reserveInterval);
     }
 
     public function test_createWhenTimeFromEqualsTimeTo()
     {
         $this->expectException(ErrorReporting::class);
 
-        $table = new Table(1);
-
-        $reserveInterval = new ReserveInterval(
-            new DateTime('2020-08-12 18:00:00'),
-            new DateTime('2020-08-12 18:00:00')
+        new Reserve(
+            new ReserveInterval(
+                new DateTime('2020-08-12 18:00:00'),
+                new DateTime('2020-08-12 18:00:00')
+            )
         );
-
-        new Reserve($table, $reserveInterval);
     }
 
     public function test_getTimeFrom_getTimeTo()
     {
-        $table = new Table(1);
-
         $timeFrom = new DateTime('2020-08-12 18:00:00');
         $timeTo   = new DateTime('2020-08-12 20:00:00');
-        $reserveInterval = new ReserveInterval($timeFrom, $timeTo);
-        $reserve  = new Reserve($table, $reserveInterval);
+        $reserve  = new Reserve(new ReserveInterval($timeFrom, $timeTo));
 
         $this->assertSame($timeFrom, $reserve->getTimeFrom());
         $this->assertSame($timeTo,   $reserve->getTimeTo());
