@@ -59,24 +59,24 @@ class HallTest extends TestCase
     public function test_getTables_addTable()
     {
         $hall = new Hall('Main');
-        $table1 = new Table($hall, 1);
+        $table = new Table(1);
 
-        $hall->addTable($table1);
+        $hall->addTable($table);
         $tables = $hall->getTables();
 
-        $this->assertSame($table1, $tables[0]);
+        $this->assertSame($table, $tables[0]);
     }
 
     public function test_removeTables()
     {
         $hall = new Hall('Main');
-        $table1 = new Table($hall, 1);
+        $table = new Table(1);
 
-        $hall->addTable($table1);
+        $hall->addTable($table);
         $tables = $hall->getTables();
         $this->assertEquals(1, $tables->count());
 
-        $hall->removeTable($table1);
+        $hall->removeTable($table);
         $this->assertEquals(0, $tables->count());
     }
 }

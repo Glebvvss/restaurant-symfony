@@ -43,9 +43,8 @@ class Table
      */
     private Collection $reserves;
 
-    public function __construct(Hall $hall, int $number)
+    public function __construct(int $number)
     {
-        $this->hall     = $hall;
         $this->reserves = new ArrayCollection();
         $this->setNumber($number);
     }

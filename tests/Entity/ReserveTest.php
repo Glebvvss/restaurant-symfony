@@ -16,8 +16,7 @@ class ReserveTest extends TestCase
     {
         $this->expectException(ErrorReporting::class);
 
-        $hall  = new Hall('Main');
-        $table = new Table($hall, 1);
+        $table = new Table(1);
 
         $reserveInterval = new ReserveInterval(
             new DateTime('2020-08-12 18:00:00'),
@@ -31,8 +30,7 @@ class ReserveTest extends TestCase
     {
         $this->expectException(ErrorReporting::class);
 
-        $hall  = new Hall('Main');
-        $table = new Table($hall, 1);
+        $table = new Table(1);
 
         $reserveInterval = new ReserveInterval(
             new DateTime('2020-08-12 18:00:00'),
@@ -44,8 +42,7 @@ class ReserveTest extends TestCase
 
     public function test_getTimeFrom_getTimeTo()
     {
-        $hall = new Hall('Main');
-        $table = new Table($hall, 1);
+        $table = new Table(1);
 
         $timeFrom = new DateTime('2020-08-12 18:00:00');
         $timeTo   = new DateTime('2020-08-12 20:00:00');

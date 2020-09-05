@@ -14,15 +14,13 @@ class TableTest extends TestCase
 {
     public function test_getNumber()
     {
-        $hall = new Hall('Main');
-        $table = new Table($hall, 1);
+        $table = new Table(1);
         $this->assertEquals(1, $table->getNumber());
     }
 
     public function test_reserves()
     {
-        $hall = new Hall('Main');
-        $table = new Table($hall, 1);
+        $table = new Table(1);
         $reserve = new Reserve(
             $table, 
             new ReserveInterval(
@@ -40,8 +38,7 @@ class TableTest extends TestCase
     {
         $this->expectException(ErrorReporting::class);
 
-        $hall = new Hall('Main');
-        $table = new Table($hall, 1);
+        $table = new Table(1);
         $reserve = new Reserve(
             $table, 
             new ReserveInterval(
@@ -55,8 +52,7 @@ class TableTest extends TestCase
 
     public function test_removeExistingReserve()
     {
-        $hall = new Hall('Main');
-        $table = new Table($hall, 1);
+        $table = new Table(1);
         $reserve = new Reserve(
             $table, 
             new ReserveInterval(
@@ -77,8 +73,7 @@ class TableTest extends TestCase
 
     public function test_intersectWith_noIntersect()
     {
-        $hall = new Hall('Main');
-        $table = new Table($hall, 1);
+        $table = new Table(1);
         $reserve1 = new Reserve(
             $table, 
             new ReserveInterval(
@@ -101,8 +96,7 @@ class TableTest extends TestCase
 
     public function test_intersectWith_intersect()
     {
-        $hall = new Hall('Main');
-        $table = new Table($hall, 1);
+        $table = new Table(1);
         $reserve1 = new Reserve(
             $table, 
             new ReserveInterval(
