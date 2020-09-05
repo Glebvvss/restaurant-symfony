@@ -30,4 +30,11 @@ class HallRepository extends ServiceEntityRepository
 
         return $hall;
     }
+
+    public function nameReserved(string $name): bool
+    {
+        return (bool) $this->findBy([
+            'name' => $name
+        ]);
+    }
 }
