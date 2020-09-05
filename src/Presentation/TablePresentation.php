@@ -16,7 +16,6 @@ class TablePresentation implements PresentationInterface
     public function toArray(): array
     {
         return [
-            'id'     => $this->table->getId(),
             'number' => $this->table->getNumber(),
         ];
     }

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use BadMethodCallException;
 use Doctrine\ORM\Mapping as ORM;
 use App\Exception\ErrorReporting;
 use Doctrine\Common\Collections\Collection;
@@ -24,7 +25,7 @@ class Table
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private ?int $id = null;
+    private ?int $id;
 
     /**
      * @ORM\Column(type="integer")
@@ -35,36 +36,35 @@ class Table
      * @ORM\ManyToOne(targetEntity="Hall", inversedBy="tables")
      * @ORM\JoinColumn(name="hall_id", referencedColumnName="id")
      */
-    private Hall $hall;
+    private ?Hall $hall = null;
 
     /**
-     * @ORM\OneToMany(targetEntity="Reserve", mappedBy="table")
+     * @ORM\OneToMany(targetEntity="Reserve", mappedBy="table", cascade={"persist"})
      */
     private Collection $reserves;
 
     public function __construct(int $number)
     {
+        if ($number < 0) {
+            throw new ErrorReporting(static::INVALID_NUMBER_ERROR_MSG);
+        }
+
         $this->reserves = new ArrayCollection();
-        $this->setNumber($number);
+        $this->number   = $number;
     }
 
-    public function getId(): ?int
+    public function setHall(Hall $hall): void
     {
-        return $this->id;
+        if ($this->hall) {
+            throw new BadMethodCallException('You cannot override hall in table');
+        }
+
+        $this->hall = $hall;
     }
 
     public function getNumber(): int
     {
         return $this->number;
-    }
-
-    public function setNumber(int $number): void
-    {
-        if ($number < 0) {
-            throw new ErrorReporting(static::INVALID_NUMBER_ERROR_MSG);
-        }
-
-        $this->number = $number;
     }
 
     public function getReserves(): Collection

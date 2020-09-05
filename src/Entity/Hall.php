@@ -19,6 +19,8 @@ class Hall
 
     private const TRY_TO_DELETE_NON_EXISTING_TABLE_ERROR_MSG = 'Try to delete non existing table';
 
+    private const TABLE_NOT_EXISTS_ERROR_MSG = 'Table no exists';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -72,6 +74,7 @@ class Hall
             }
         }
 
+        $newTable->setHall($this);
         $this->tables[] = $newTable;
     }
 
@@ -87,5 +90,28 @@ class Hall
     public function getTables(): Collection
     {
         return $this->tables;
+    }
+
+    public function removeTableByNumber(int $number): void
+    {
+        foreach($this->tables as $table) {
+            if ($table->getNumber() === $number) {
+                $this->tables->removeElement($table);
+                return;
+            }
+        }
+
+        throw new ErrorReporting(static::TABLE_NOT_EXISTS_ERROR_MSG);
+    }
+
+    public function getTableByNumber(int $number): Table
+    {
+        foreach($this->tables as $table) {
+            if ($table->getNumber() === $number) {
+                return $table;
+            }
+        }
+
+        throw new ErrorReporting(static::TABLE_NOT_EXISTS_ERROR_MSG);
     }
 }

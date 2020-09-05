@@ -16,7 +16,6 @@ class TablePresentationTest extends TestCase
 
         $this->assertEquals(
             [
-                'id'     => null,
                 'number' => $tableNumber
             ],
             $presentation->toArray()
