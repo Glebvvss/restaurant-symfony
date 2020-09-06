@@ -94,24 +94,21 @@ class Hall
 
     public function removeTableByNumber(int $number): void
     {
-        foreach($this->tables as $table) {
-            if ($table->getNumber() === $number) {
-                $this->tables->removeElement($table);
-                return;
-            }
-        }
-
-        throw new ErrorReporting(static::TABLE_NOT_EXISTS_ERROR_MSG);
+        $this->tables->removeElement(
+            $this->getTableByNumber($number)
+        );
     }
 
     public function getTableByNumber(int $number): Table
     {
-        foreach($this->tables as $table) {
-            if ($table->getNumber() === $number) {
-                return $table;
-            }
+        $targetTable = $this->tables
+                            ->filter(fn($table) => $table->getNumber() === $number)
+                            ->first();
+
+        if (empty($targetTable)) {
+            throw new ErrorReporting(static::TABLE_NOT_EXISTS_ERROR_MSG);    
         }
 
-        throw new ErrorReporting(static::TABLE_NOT_EXISTS_ERROR_MSG);
+        return $targetTable;
     }
 }

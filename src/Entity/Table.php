@@ -95,7 +95,7 @@ class Table
 
     public function removeReserve(Reserve $reserve): void
     {
-        if (!$this->reserves->contains($reserve)) {
+        if (! $this->reserves->contains($reserve)) {
             throw new ErrorReporting(static::TRY_TO_REMOVE_NOT_EXISTING_RESERVE_ERROR_MSG);
         }
 
