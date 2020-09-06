@@ -21,6 +21,7 @@ class TableTest extends TestCase
     {
         $table = new Table(1);
         $reserve = new Reserve(
+            'John Mayer',
             new ReserveInterval(
                 new DateTime('2020-08-12 18:00:00'),
                 new DateTime('2020-08-12 20:00:00')
@@ -38,6 +39,7 @@ class TableTest extends TestCase
 
         $table = new Table(1);
         $reserve = new Reserve(
+            'John Mayer',
             new ReserveInterval(
                 new DateTime('2020-08-12 18:00:00'),
                 new DateTime('2020-08-12 20:00:00')
@@ -51,6 +53,7 @@ class TableTest extends TestCase
     {
         $table = new Table(1);
         $reserve = new Reserve(
+            'John Mayer',
             new ReserveInterval(
                 new DateTime('2020-08-12 18:00:00'),
                 new DateTime('2020-08-12 20:00:00')

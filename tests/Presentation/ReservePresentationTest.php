@@ -12,10 +12,12 @@ class ReservePresentationTest extends TestCase
 {
     public function test_toArray()
     {
+        $name     = 'John Mayer';
         $timeFrom = '2020-12-12 16:00';
         $timeTo   = '2020-12-12 18:00';
 
         $reserve = new Reserve(
+            $name,
             new ReserveInterval(
                 new DateTime($timeFrom),
                 new DateTime($timeTo)
@@ -26,9 +28,10 @@ class ReservePresentationTest extends TestCase
 
         $this->assertEquals(
             [
-                'id'        => null,
-                'time_from' => $timeFrom,
-                'time_to'   => $timeTo,
+                'id'          => null,
+                'client_name' => $name,
+                'time_from'   => $timeFrom,
+                'time_to'     => $timeTo,
             ],
             $presentation->toArray()
         );

@@ -18,9 +18,10 @@ class ReservePresentation implements PresentationInterface
     public function toArray(): array
     {
         return [
-            'id'        => $this->reserve->getId(),
-            'time_from' => $this->reserve->getTimeFrom()->format(static::TIME_FORMAT),
-            'time_to'   => $this->reserve->getTimeTo()->format(static::TIME_FORMAT),
+            'id'          => $this->reserve->getId(),
+            'client_name' => $this->reserve->getClientName(),
+            'time_from'   => $this->reserve->getTimeFrom()->format(static::TIME_FORMAT),
+            'time_to'     => $this->reserve->getTimeTo()->format(static::TIME_FORMAT),
         ];
     }
 }

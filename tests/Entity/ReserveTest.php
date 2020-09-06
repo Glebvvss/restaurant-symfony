@@ -10,11 +10,14 @@ use App\Exception\ErrorReporting;
 
 class ReserveTest extends TestCase
 {
+    private const CLIENT_NAME = 'John Mayer';
+
     public function test_createWhenTimeFromGtTimeTo()
     {
         $this->expectException(ErrorReporting::class);
 
         new Reserve(
+            self::CLIENT_NAME,
             new ReserveInterval(
                 new DateTime('2020-08-12 18:00:00'),
                 new DateTime('2020-08-12 16:00:00')
@@ -27,6 +30,7 @@ class ReserveTest extends TestCase
         $this->expectException(ErrorReporting::class);
 
         new Reserve(
+            self::CLIENT_NAME,
             new ReserveInterval(
                 new DateTime('2020-08-12 18:00:00'),
                 new DateTime('2020-08-12 18:00:00')
@@ -34,11 +38,27 @@ class ReserveTest extends TestCase
         );
     }
 
+    public function test_getClientName()
+    {
+        $reserve = new Reserve(
+            self::CLIENT_NAME,
+            new ReserveInterval(
+                new DateTime('2020-08-12 18:00:00'),
+                new DateTime('2020-08-12 19:00:00')
+            )
+        );
+
+        $this->assertSame(self::CLIENT_NAME, $reserve->getClientName());
+    }
+
     public function test_getTimeFrom_getTimeTo()
     {
         $timeFrom = new DateTime('2020-08-12 18:00:00');
         $timeTo   = new DateTime('2020-08-12 20:00:00');
-        $reserve  = new Reserve(new ReserveInterval($timeFrom, $timeTo));
+        $reserve  = new Reserve(
+            self::CLIENT_NAME,
+            new ReserveInterval($timeFrom, $timeTo)
+        );
 
         $this->assertSame($timeFrom, $reserve->getTimeFrom());
         $this->assertSame($timeTo,   $reserve->getTimeTo());
@@ -47,6 +67,7 @@ class ReserveTest extends TestCase
     public function test_intersectWith_noIntersect()
     {
         $reserve1 = new Reserve(
+            self::CLIENT_NAME,
             new ReserveInterval(
                 new DateTime('2020-08-12 18:00:00'),
                 new DateTime('2020-08-12 20:00:00')
@@ -54,6 +75,7 @@ class ReserveTest extends TestCase
         );
 
         $reserve2 = new Reserve(
+            self::CLIENT_NAME,
             new ReserveInterval(
                 new DateTime('2020-08-12 20:00:00'),
                 new DateTime('2020-08-12 21:00:00')
@@ -67,6 +89,7 @@ class ReserveTest extends TestCase
     public function test_intersectWith_intersect()
     {
         $reserve1 = new Reserve(
+            self::CLIENT_NAME,
             new ReserveInterval(
                 new DateTime('2020-08-12 18:00:00'),
                 new DateTime('2020-08-12 20:00:00')
@@ -74,6 +97,7 @@ class ReserveTest extends TestCase
         );
 
         $reserve2 = new Reserve(
+            self::CLIENT_NAME,
             new ReserveInterval(
                 new DateTime('2020-08-12 17:30:00'),
                 new DateTime('2020-08-12 18:30:00')
