@@ -11,7 +11,7 @@ use App\Exception\ErrorReporting;
 */
 class ReserveInterval
 {
-    private const TIME_FROM_GTE_TIME_TO_ERROR_MSG = 'Time from must be lesss then time to';
+    private const TIME_FROM_GTE_TIME_TO_ERROR_MSG = 'Time from must be less then time to';
 
     private const TIME_NOT_IN_SCHEDULE_ERROR_MSG = 'Time not in restaurant schedule time';
 
