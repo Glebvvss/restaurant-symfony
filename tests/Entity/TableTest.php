@@ -3,8 +3,10 @@
 namespace App\Test\Entity;
 
 use DateTime;
+use App\Entity\Hall;
 use App\Entity\Table;
 use App\Entity\Reserve;
+use BadMethodCallException;
 use App\Entity\ReserveInterval;
 use PHPUnit\Framework\TestCase;
 use App\Exception\ErrorReporting;
@@ -70,5 +72,23 @@ class TableTest extends TestCase
         $table->removeReserve($reserve);
         $reserves = $table->getReserves();
         $this->assertSame(0, $reserves->count());
+    }
+
+    public function test_setHall_getHall()
+    {
+        $table = new Table(1);
+        $hall  = new Hall('Main');
+        $table->setHall($hall);
+        $this->assertSame($hall, $table->getHall());
+    }
+
+    public function test_setHall_doubleSet()
+    {
+        $this->expectException(BadMethodCallException::class);
+
+        $table = new Table(1);
+        $hall  = new Hall('Main');
+        $table->setHall($hall);
+        $table->setHall($hall);
     }
 }

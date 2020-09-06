@@ -3,7 +3,9 @@
 namespace App\Test\Entity;
 
 use DateTime;
+use App\Entity\Table;
 use App\Entity\Reserve;
+use BadMethodCallException;
 use App\Entity\ReserveInterval;
 use PHPUnit\Framework\TestCase;
 use App\Exception\ErrorReporting;
@@ -106,5 +108,37 @@ class ReserveTest extends TestCase
 
         $this->assertTrue($reserve1->intersectWith($reserve2));
         $this->assertTrue($reserve2->intersectWith($reserve1));
+    }
+
+    public function test_setTable_getTable()
+    {
+        $reserve = new Reserve(
+            self::CLIENT_NAME,
+            new ReserveInterval(
+                new DateTime('2020-08-12 17:30:00'),
+                new DateTime('2020-08-12 18:30:00')
+            )
+        );
+
+        $table  = new Table(1);
+        $reserve->setTable($table);
+        $this->assertSame($table, $reserve->getTable());
+    }
+
+    public function test_setTable_doubbleSet()
+    {
+        $this->expectException(BadMethodCallException::class);
+
+        $reserve = new Reserve(
+            self::CLIENT_NAME,
+            new ReserveInterval(
+                new DateTime('2020-08-12 17:30:00'),
+                new DateTime('2020-08-12 18:30:00')
+            )
+        );
+
+        $table  = new Table(1);
+        $reserve->setTable($table);
+        $reserve->setTable($table);
     }
 }
