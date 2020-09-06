@@ -30,6 +30,6 @@ class CreateAction
         $hall = new Hall($name);
         $this->em->persist($hall);
         $this->em->flush();
-        return ( new HallPresentation($hall) )->toArray();
+        return (new HallPresentation($hall))->toArray();
     }
 }
