@@ -11,6 +11,8 @@ use App\Exception\ErrorReporting;
 
 class TableTest extends TestCase
 {
+    private const CLIENT_NAME = 'John Mayer';
+
     public function test_getNumber()
     {
         $table = new Table(1);
@@ -21,7 +23,7 @@ class TableTest extends TestCase
     {
         $table = new Table(1);
         $reserve = new Reserve(
-            'John Mayer',
+            static::CLIENT_NAME,
             new ReserveInterval(
                 new DateTime('2020-08-12 18:00:00'),
                 new DateTime('2020-08-12 20:00:00')
@@ -39,7 +41,7 @@ class TableTest extends TestCase
 
         $table = new Table(1);
         $reserve = new Reserve(
-            'John Mayer',
+            static::CLIENT_NAME,
             new ReserveInterval(
                 new DateTime('2020-08-12 18:00:00'),
                 new DateTime('2020-08-12 20:00:00')
@@ -53,7 +55,7 @@ class TableTest extends TestCase
     {
         $table = new Table(1);
         $reserve = new Reserve(
-            'John Mayer',
+            static::CLIENT_NAME,
             new ReserveInterval(
                 new DateTime('2020-08-12 18:00:00'),
                 new DateTime('2020-08-12 20:00:00')
