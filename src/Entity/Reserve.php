@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use DateTimeInterface;
+use BadMethodCallException;
 use Doctrine\ORM\Mapping as ORM;
 use App\Exception\ErrorReporting;
 
@@ -29,7 +30,7 @@ class Reserve
      * @ORM\ManyToOne(targetEntity="Table", inversedBy="reserves")
      * @ORM\JoinColumn(name="table_id", referencedColumnName="id")
      */
-    private Table $table;
+    private ?Table $table = null;
 
     /**
      * @ORM\Embedded(class="ReserveInterval")
@@ -45,6 +46,15 @@ class Reserve
 
         $this->clientName      = $clientName;
         $this->reserveInterval = $reserveInterval;
+    }
+
+    public function setTable(Table $table): void
+    {
+        if ($this->table) {
+            throw new BadMethodCallException('You cannot override hall in table');
+        }
+
+        $this->table = $table;
     }
 
     public function getId(): ?int

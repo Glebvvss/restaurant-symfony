@@ -80,6 +80,7 @@ class Table
             }
         }
 
+        $newReserve->setTable($this);
         $this->reserves[] = $newReserve;
     }
 
