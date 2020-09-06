@@ -52,7 +52,7 @@ class Reserve
     public function setTable(Table $table): void
     {
         if ($this->table) {
-            throw new BadMethodCallException('You cannot override hall in table');
+            throw new BadMethodCallException('You cannot override table in reserve');
         }
 
         $this->table = $table;
@@ -61,7 +61,7 @@ class Reserve
     public function getTable(): Table
     {
         if (empty($this->table)) {
-            throw new BadMethodCallException('You cannot call getHall method before setHall call');
+            throw new BadMethodCallException('You cannot call getTable method before setTable call');
         }
 
         return $this->table;
