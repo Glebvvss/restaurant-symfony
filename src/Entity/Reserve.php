@@ -6,9 +6,10 @@ use DateTimeInterface;
 use BadMethodCallException;
 use Doctrine\ORM\Mapping as ORM;
 use App\Exception\ErrorReporting;
+use App\Repository\ReserveRepository;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass=ReserveRepository::class)
  */
 class Reserve
 {
@@ -55,6 +56,15 @@ class Reserve
         }
 
         $this->table = $table;
+    }
+
+    public function getTable(): Table
+    {
+        if (empty($this->table)) {
+            throw new BadMethodCallException('You cannot call getHall method before setHall call');
+        }
+
+        return $this->table;
     }
 
     public function getId(): ?int

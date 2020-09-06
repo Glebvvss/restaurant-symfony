@@ -5,6 +5,8 @@ namespace App\Controller;
 use DateTime;
 use App\Api\Json\Api;
 use App\Action\Reserve\CreateAction;
+use App\Action\Reserve\DeleteAction;
+use App\Action\Reserve\FindOneAction;
 use Symfony\Component\HttpFoundation\Request;
 use App\Action\Reserve\FindActualByTableAction;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,6 +18,16 @@ class ReserveController
     public function __construct(Api $api)
     {
         $this->api = $api;
+    }
+
+    /**
+     * @Route("/reserve/{id<\d+>}", methods={"GET"}, name="reserve-single")
+     */
+    public function findOne(FindOneAction $action, int $id)
+    {
+        return $this->api
+                    ->makeRequest(fn() => $action->handle($id))
+                    ->buildResponse();
     }
 
     /**
@@ -46,6 +58,16 @@ class ReserveController
                         new DateTime(json_decode($request->getContent())->time_from),
                         new DateTime(json_decode($request->getContent())->time_to)
                     ))
+                    ->buildResponse();
+    }
+
+    /**
+     * @Route("/reserve/{id<\d+>}", methods={"DELETE"}, name="reserve-delete")
+     */    
+    public function delete(DeleteAction $action, int $id)
+    {
+        return $this->api
+                    ->makeRequest(fn() => $action->handle($id))
                     ->buildResponse();
     }
 }

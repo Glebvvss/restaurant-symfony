@@ -62,6 +62,15 @@ class Table
         $this->hall = $hall;
     }
 
+    public function getHall(): Hall
+    {
+        if (empty($this->hall)) {
+            throw new BadMethodCallException('You cannot call getHall method before setHall call');
+        }
+
+        return $this->hall;
+    }
+
     public function getNumber(): int
     {
         return $this->number;
