@@ -9,6 +9,7 @@ use MockeryAssertions;
 use Doctrine\ORM\EntityManager;
 use PHPUnit\Framework\TestCase;
 use App\Action\Hall\DeleteAction;
+use App\Repository\HallRepository;
 
 class DeleteActionTest extends TestCase
 {
@@ -23,7 +24,7 @@ class DeleteActionTest extends TestCase
         $hall = new Hall('Main');
         $property->setValue($hall, 1);
 
-        $repository = Mockery::mock(EntityManager::class);
+        $repository = Mockery::mock(HallRepository::class);
         $repository->shouldReceive('findOne')
                    ->with(1)
                    ->once()
