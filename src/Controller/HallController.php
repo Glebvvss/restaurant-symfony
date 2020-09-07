@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Api\Json\Api;
 use App\Action\Hall\CreateAction;
+use App\Action\Hall\UpdateAction;
 use App\Action\Hall\DeleteAction;
 use App\Action\Hall\FindOneAction;
 use App\Action\Hall\FindAllAction;
@@ -46,6 +47,23 @@ class HallController
     {
         return $this->api
                     ->makeRequest(fn() => $action->handle(
+                        json_decode($request->getContent())->name
+                    ))
+                    ->buildResponse();
+    }
+
+    /**
+     * @Route("/hall/{id<\d+>}", methods={"PUT"}, name="hall-update")
+     */
+    public function update(
+        UpdateAction $action, 
+        Request      $request,
+        int          $id
+    )
+    {
+        return $this->api
+                    ->makeRequest(fn() => $action->handle(
+                        $id,
                         json_decode($request->getContent())->name
                     ))
                     ->buildResponse();
