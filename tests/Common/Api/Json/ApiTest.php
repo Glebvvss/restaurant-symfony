@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Test\Api\Json;
+namespace App\Test\Common\Api\Json;
 
-use App\Api\Json\Api;
-use App\Api\Json\ApiRequest;
+use App\Common\Api\Json\Api;
+use App\Common\Api\Json\ApiRequest;
 use PHPUnit\Framework\TestCase;
 
 class ApiTest extends TestCase

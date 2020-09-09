@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use DateTime;
-use App\Api\Json\Api;
+use App\Common\Api\Json\Api;
 use App\Action\Reserve\CreateAction;
 use App\Action\Reserve\DeleteAction;
 use App\Action\Reserve\FindOneAction;

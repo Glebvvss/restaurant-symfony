@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Api\Json\Api;
+use App\Common\Api\Json\Api;
 use App\Action\Hall\CreateAction;
 use App\Action\Hall\UpdateAction;
 use App\Action\Hall\DeleteAction;

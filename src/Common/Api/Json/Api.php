@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Api\Json;
+namespace App\Common\Api\Json;
 
-use App\Api\Contract\ApiInterface;
-use App\Api\Contract\ApiRequestInterface;
+use App\Common\Api\Contract\ApiInterface;
+use App\Common\Api\Contract\ApiRequestInterface;
 
 class Api implements ApiInterface
 {

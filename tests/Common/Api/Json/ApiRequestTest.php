@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Test\Api\Json;
+namespace App\Test\Common\Api\Json;
 
 use Exception;
-use App\Api\Json\ApiRequest;
+use App\Common\Api\Json\ApiRequest;
 use PHPUnit\Framework\TestCase;
 use App\Common\Exception\ErrorReporting;
 use Symfony\Component\HttpFoundation\JsonResponse;

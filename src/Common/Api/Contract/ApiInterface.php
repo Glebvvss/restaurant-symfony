@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Api\Contract;
+namespace App\Common\Api\Contract;
 
 interface ApiInterface
 {

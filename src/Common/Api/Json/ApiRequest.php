@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Api\Json;
+namespace App\Common\Api\Json;
 
 use Throwable;
 use App\Common\Exception\ErrorReporting;
-use App\Api\Contract\ApiRequestInterface;
+use App\Common\Api\Contract\ApiRequestInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ApiRequest implements ApiRequestInterface

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Api\Json\Api;
+use App\Common\Api\Json\Api;
 use App\Action\Table\CreateAction;
 use App\Action\Table\DeleteAction;
 use App\Action\Table\FindOneAction;
