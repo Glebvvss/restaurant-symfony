@@ -4,11 +4,11 @@ namespace App\Controller;
 
 use DateTime;
 use App\Common\Api\Json\Api;
-use App\Action\Reserve\CreateAction;
-use App\Action\Reserve\DeleteAction;
-use App\Action\Reserve\FindOneAction;
+use App\Module\TableReservation\Action\Reserve\CreateAction;
+use App\Module\TableReservation\Action\Reserve\DeleteAction;
+use App\Module\TableReservation\Action\Reserve\FindOneAction;
 use Symfony\Component\HttpFoundation\Request;
-use App\Action\Reserve\FindActualByTableAction;
+use App\Module\TableReservation\Action\Reserve\FindActualByTableAction;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ReserveController
