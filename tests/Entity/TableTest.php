@@ -9,7 +9,7 @@ use App\Entity\Reserve;
 use BadMethodCallException;
 use App\Entity\ReserveInterval;
 use PHPUnit\Framework\TestCase;
-use App\Exception\ErrorReporting;
+use App\Common\Exception\ErrorReporting;
 
 class TableTest extends TestCase
 {

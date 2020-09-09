@@ -5,7 +5,7 @@ namespace App\Test\Api\Json;
 use Exception;
 use App\Api\Json\ApiRequest;
 use PHPUnit\Framework\TestCase;
-use App\Exception\ErrorReporting;
+use App\Common\Exception\ErrorReporting;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ApiRequestTest extends TestCase

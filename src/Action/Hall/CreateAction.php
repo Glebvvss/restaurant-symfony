@@ -3,7 +3,7 @@
 namespace App\Action\Hall;
 
 use App\Entity\Hall;
-use App\Exception\ErrorReporting;
+use App\Common\Exception\ErrorReporting;
 use App\Repository\HallRepository;
 use App\Presentation\HallPresentation;
 use Doctrine\ORM\EntityManagerInterface;

@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Exception\ErrorReporting;
+use App\Common\Exception\ErrorReporting;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 abstract class BaseRepository extends ServiceEntityRepository

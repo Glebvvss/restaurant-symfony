@@ -5,7 +5,7 @@ namespace App\Test\Entity;
 use App\Entity\Hall;
 use App\Entity\Table;
 use PHPUnit\Framework\TestCase;
-use App\Exception\ErrorReporting;
+use App\Common\Exception\ErrorReporting;
 
 class HallTest extends TestCase
 {

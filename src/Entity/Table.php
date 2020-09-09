@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use BadMethodCallException;
 use Doctrine\ORM\Mapping as ORM;
-use App\Exception\ErrorReporting;
+use App\Common\Exception\ErrorReporting;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 

@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
-use App\Exception\ErrorReporting;
+use App\Common\Exception\ErrorReporting;
 
 /** 
  * @ORM\Embeddable

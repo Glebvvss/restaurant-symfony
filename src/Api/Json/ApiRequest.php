@@ -3,7 +3,7 @@
 namespace App\Api\Json;
 
 use Throwable;
-use App\Exception\ErrorReporting;
+use App\Common\Exception\ErrorReporting;
 use App\Api\Contract\ApiRequestInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 

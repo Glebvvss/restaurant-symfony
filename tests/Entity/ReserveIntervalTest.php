@@ -5,7 +5,7 @@ namespace App\Test\Entity;
 use DateTime;
 use App\Entity\ReserveInterval;
 use PHPUnit\Framework\TestCase;
-use App\Exception\ErrorReporting;
+use App\Common\Exception\ErrorReporting;
 
 class ReserveIntervalTest extends TestCase
 {

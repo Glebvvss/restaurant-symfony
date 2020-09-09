@@ -7,7 +7,7 @@ use App\Entity\Hall;
 use MockeryAssertions;
 use Doctrine\ORM\EntityManager;
 use PHPUnit\Framework\TestCase;
-use App\Exception\ErrorReporting;
+use App\Common\Exception\ErrorReporting;
 use App\Action\Hall\CreateAction;
 use App\Repository\HallRepository;
 
