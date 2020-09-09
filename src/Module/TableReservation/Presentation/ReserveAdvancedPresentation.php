@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Presentation;
+namespace App\Module\TableReservation\Presentation;
 
-use App\Entity\Hall;
-use App\Entity\Table;
-use App\Entity\Reserve;
+use App\Module\TableReservation\Entity\Hall;
+use App\Module\TableReservation\Entity\Table;
+use App\Module\TableReservation\Entity\Reserve;
 
 class ReserveAdvancedPresentation implements PresentationInterface
 {

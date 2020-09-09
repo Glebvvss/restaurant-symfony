@@ -2,10 +2,10 @@
 
 namespace App\Module\TableReservation\Action\Reserve;
 
-use App\Entity\Reserve;
-use App\Repository\ReserveRepository;
+use App\Module\TableReservation\Entity\Reserve;
+use App\Module\TableReservation\Repository\ReserveRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Presentation\ReserveAdvancedPresentation;
+use App\Module\TableReservation\Presentation\ReserveAdvancedPresentation;
 
 class FindOneAction
 {

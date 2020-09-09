@@ -4,11 +4,11 @@ namespace App\Test\Module\TableReservation\Action\Reserve;
 
 use Mockery;
 use DateTime;
-use App\Entity\Hall;
-use App\Entity\Table;
+use App\Module\TableReservation\Entity\Hall;
+use App\Module\TableReservation\Entity\Table;
 use Doctrine\ORM\EntityManager;
 use PHPUnit\Framework\TestCase;
-use App\Repository\HallRepository;
+use App\Module\TableReservation\Repository\HallRepository;
 use App\Module\TableReservation\Action\Reserve\CreateAction;
 
 class CreateActionTest extends TestCase

@@ -1,9 +1,9 @@
 <?php 
 
-namespace App\Test\Entity;
+namespace App\Test\Module\TableReservation\Entity;
 
 use DateTime;
-use App\Entity\OpeningHours;
+use App\Module\TableReservation\Entity\OpeningHours;
 use PHPUnit\Framework\TestCase;
 
 class OpeningHoursTest extends TestCase

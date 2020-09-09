@@ -2,9 +2,9 @@
 
 namespace App\Module\TableReservation\Action\Table;
 
-use App\Entity\Hall;
-use App\Repository\HallRepository;
-use App\Presentation\TablePresentation;
+use App\Module\TableReservation\Entity\Hall;
+use App\Module\TableReservation\Repository\HallRepository;
+use App\Module\TableReservation\Presentation\TablePresentation;
 use Doctrine\ORM\EntityManagerInterface;
 
 class FindAllAction

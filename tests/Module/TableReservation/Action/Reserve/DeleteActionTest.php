@@ -5,12 +5,12 @@ namespace App\Test\Module\TableReservation\Action\Reserve;
 use Mockery;
 use DateTime;
 use MockeryAssertions;
-use App\Entity\Reserve;
-use App\Entity\ReserveInterval;
+use App\Module\TableReservation\Entity\Reserve;
+use App\Module\TableReservation\Entity\ReserveInterval;
 use Doctrine\ORM\EntityManager;
 use PHPUnit\Framework\TestCase;
 use App\Module\TableReservation\Action\Reserve\DeleteAction;
-use App\Repository\ReserveRepository;
+use App\Module\TableReservation\Repository\ReserveRepository;
 
 class DeleteActionTest extends TestCase
 {

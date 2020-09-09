@@ -3,12 +3,12 @@
 namespace App\Test\Module\TableReservation\Action\Hall;
 
 use Mockery;
-use App\Entity\Hall;
+use App\Module\TableReservation\Entity\Hall;
 use MockeryAssertions;
 use Doctrine\ORM\EntityManager;
 use PHPUnit\Framework\TestCase;
 use App\Module\TableReservation\Action\Hall\UpdateAction;
-use App\Repository\HallRepository;
+use App\Module\TableReservation\Repository\HallRepository;
 
 class UpdateActionTest extends TestCase
 {

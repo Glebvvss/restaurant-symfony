@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Presentation;
+namespace App\Module\TableReservation\Presentation;
 
-use App\Entity\Reserve;
+use App\Module\TableReservation\Entity\Reserve;
 
 class ReservePresentation implements PresentationInterface
 {

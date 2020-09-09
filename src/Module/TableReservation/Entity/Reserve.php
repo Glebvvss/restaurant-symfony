@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Entity;
+namespace App\Module\TableReservation\Entity;
 
 use DateTimeInterface;
 use BadMethodCallException;
 use Doctrine\ORM\Mapping as ORM;
 use App\Common\Exception\ErrorReporting;
-use App\Repository\ReserveRepository;
+use App\Module\TableReservation\Repository\ReserveRepository;
 
 /**
  * @ORM\Entity(repositoryClass=ReserveRepository::class)

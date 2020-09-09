@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Test\Presentation;
+namespace App\Test\Module\TableReservation\Presentation;
 
 use DateTime;
-use App\Entity\Reserve;
-use App\Entity\ReserveInterval;
+use App\Module\TableReservation\Entity\Reserve;
+use App\Module\TableReservation\Entity\ReserveInterval;
 use PHPUnit\Framework\TestCase;
-use App\Presentation\ReservePresentation;
+use App\Module\TableReservation\Presentation\ReservePresentation;
 
 class ReservePresentationTest extends TestCase
 {

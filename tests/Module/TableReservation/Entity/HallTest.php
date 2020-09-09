@@ -1,9 +1,9 @@
 <?php 
 
-namespace App\Test\Entity;
+namespace App\Test\Module\TableReservation\Entity;
 
-use App\Entity\Hall;
-use App\Entity\Table;
+use App\Module\TableReservation\Entity\Hall;
+use App\Module\TableReservation\Entity\Table;
 use PHPUnit\Framework\TestCase;
 use App\Common\Exception\ErrorReporting;
 

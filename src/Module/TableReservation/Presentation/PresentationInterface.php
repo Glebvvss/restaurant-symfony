@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Presentation;
+namespace App\Module\TableReservation\Presentation;
 
 interface PresentationInterface
 {

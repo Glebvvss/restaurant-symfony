@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Module\TableReservation\Repository;
 
 use App\Common\Exception\ErrorReporting;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

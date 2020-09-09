@@ -2,9 +2,9 @@
 
 namespace App\Module\TableReservation\Action\Hall;
 
-use App\Entity\Hall;
-use App\Repository\HallRepository;
-use App\Presentation\HallPresentation;
+use App\Module\TableReservation\Entity\Hall;
+use App\Module\TableReservation\Repository\HallRepository;
+use App\Module\TableReservation\Presentation\HallPresentation;
 use Doctrine\ORM\EntityManagerInterface;
 
 class FindOneAction

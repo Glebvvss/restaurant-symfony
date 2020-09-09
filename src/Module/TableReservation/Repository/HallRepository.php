@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository;
+namespace App\Module\TableReservation\Repository;
 
-use App\Entity\Hall;
+use App\Module\TableReservation\Entity\Hall;
 use Doctrine\Persistence\ManagerRegistry;
 
 class HallRepository extends BaseRepository

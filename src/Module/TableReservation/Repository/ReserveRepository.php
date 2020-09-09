@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository;
+namespace App\Module\TableReservation\Repository;
 
-use App\Entity\Reserve;
+use App\Module\TableReservation\Entity\Reserve;
 use Doctrine\Persistence\ManagerRegistry;
 
 class ReserveRepository extends BaseRepository

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Module\TableReservation\Entity;
 
 use BadMethodCallException;
 use Doctrine\ORM\Mapping as ORM;

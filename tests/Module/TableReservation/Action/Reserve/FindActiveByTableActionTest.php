@@ -5,13 +5,13 @@ namespace App\Test\Module\TableReservation\Action\Reserve;
 use Mockery;
 use DateTime;
 use ReflectionClass;
-use App\Entity\Hall;
-use App\Entity\Table;
-use App\Entity\Reserve;
-use App\Entity\ReserveInterval;
+use App\Module\TableReservation\Entity\Hall;
+use App\Module\TableReservation\Entity\Table;
+use App\Module\TableReservation\Entity\Reserve;
+use App\Module\TableReservation\Entity\ReserveInterval;
 use Doctrine\ORM\EntityManager;
 use PHPUnit\Framework\TestCase;
-use App\Repository\HallRepository;
+use App\Module\TableReservation\Repository\HallRepository;
 use App\Module\TableReservation\Action\Reserve\FindActualByTableAction;
 
 class FindActiveByTableActionTest extends TestCase

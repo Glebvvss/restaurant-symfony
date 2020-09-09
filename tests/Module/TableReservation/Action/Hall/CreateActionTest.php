@@ -3,13 +3,13 @@
 namespace App\Test\Module\TableReservation\Action\Hall;
 
 use Mockery;
-use App\Entity\Hall;
+use App\Module\TableReservation\Entity\Hall;
 use MockeryAssertions;
 use Doctrine\ORM\EntityManager;
 use PHPUnit\Framework\TestCase;
 use App\Common\Exception\ErrorReporting;
 use App\Module\TableReservation\Action\Hall\CreateAction;
-use App\Repository\HallRepository;
+use App\Module\TableReservation\Repository\HallRepository;
 
 class CreateActionTest extends TestCase
 {

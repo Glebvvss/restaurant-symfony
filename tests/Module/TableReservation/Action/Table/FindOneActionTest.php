@@ -3,11 +3,11 @@
 namespace App\Test\Module\TableReservation\Action\Table;
 
 use ReflectionClass;
-use App\Entity\Hall;
-use App\Entity\Table;
+use App\Module\TableReservation\Entity\Hall;
+use App\Module\TableReservation\Entity\Table;
 use Doctrine\ORM\EntityManager;
 use PHPUnit\Framework\TestCase;
-use App\Repository\HallRepository;
+use App\Module\TableReservation\Repository\HallRepository;
 use App\Module\TableReservation\Action\Table\FindAllAction;
 
 class FindOneActionTest extends TestCase

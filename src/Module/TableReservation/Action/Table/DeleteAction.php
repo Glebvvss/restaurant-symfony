@@ -2,8 +2,8 @@
 
 namespace App\Module\TableReservation\Action\Table;
 
-use App\Entity\Hall;
-use App\Repository\HallRepository;
+use App\Module\TableReservation\Entity\Hall;
+use App\Module\TableReservation\Repository\HallRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class DeleteAction

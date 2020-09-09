@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Test\Entity;
+namespace App\Test\Module\TableReservation\Entity;
 
 use DateTime;
-use App\Entity\Table;
-use App\Entity\Reserve;
+use App\Module\TableReservation\Entity\Table;
+use App\Module\TableReservation\Entity\Reserve;
 use BadMethodCallException;
-use App\Entity\ReserveInterval;
+use App\Module\TableReservation\Entity\ReserveInterval;
 use PHPUnit\Framework\TestCase;
 use App\Common\Exception\ErrorReporting;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Test\Presentation;
+namespace App\Test\Module\TableReservation\Presentation;
 
-use App\Entity\Hall;
+use App\Module\TableReservation\Entity\Hall;
 use PHPUnit\Framework\TestCase;
-use App\Presentation\HallPresentation;
+use App\Module\TableReservation\Presentation\HallPresentation;
 
 class HallPresentationTest extends TestCase
 {
