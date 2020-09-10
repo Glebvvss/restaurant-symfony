@@ -2,11 +2,11 @@
 
 namespace App\Module\TableReservation\Action\Table;
 
+use Doctrine\ORM\EntityManagerInterface;
 use App\Module\TableReservation\Entity\Hall;
 use App\Module\TableReservation\Entity\Table;
 use App\Module\TableReservation\Repository\HallRepository;
 use App\Module\TableReservation\Presentation\TablePresentation;
-use Doctrine\ORM\EntityManagerInterface;
 
 class CreateAction
 {

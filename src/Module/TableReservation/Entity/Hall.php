@@ -4,9 +4,9 @@ namespace App\Module\TableReservation\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\Common\Exception\ErrorReporting;
-use App\Module\TableReservation\Repository\HallRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use App\Module\TableReservation\Repository\HallRepository;
 
 /**
  * @ORM\Entity(repositoryClass=HallRepository::class)

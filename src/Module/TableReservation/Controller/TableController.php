@@ -3,12 +3,12 @@
 namespace App\Module\TableReservation\Controller;
 
 use App\Common\Api\Json\Api;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 use App\Module\TableReservation\Action\Table\CreateAction;
 use App\Module\TableReservation\Action\Table\DeleteAction;
 use App\Module\TableReservation\Action\Table\FindOneAction;
 use App\Module\TableReservation\Action\Table\FindAllAction;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 
 class TableController
 {

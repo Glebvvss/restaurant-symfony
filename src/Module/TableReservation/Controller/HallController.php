@@ -3,13 +3,13 @@
 namespace App\Module\TableReservation\Controller;
 
 use App\Common\Api\Json\Api;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 use App\Module\TableReservation\Action\Hall\CreateAction;
 use App\Module\TableReservation\Action\Hall\UpdateAction;
 use App\Module\TableReservation\Action\Hall\DeleteAction;
 use App\Module\TableReservation\Action\Hall\FindOneAction;
 use App\Module\TableReservation\Action\Hall\FindAllAction;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 
 class HallController
 {

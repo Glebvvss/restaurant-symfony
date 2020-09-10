@@ -2,8 +2,8 @@
 
 namespace App\Module\TableReservation\Repository;
 
-use App\Module\TableReservation\Entity\Reserve;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Module\TableReservation\Entity\Reserve;
 
 class ReserveRepository extends BaseRepository
 {

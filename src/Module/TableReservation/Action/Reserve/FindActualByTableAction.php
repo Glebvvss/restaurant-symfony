@@ -2,9 +2,9 @@
 
 namespace App\Module\TableReservation\Action\Reserve;
 
+use Doctrine\ORM\EntityManagerInterface;
 use App\Module\TableReservation\Entity\Hall;
 use App\Module\TableReservation\Repository\HallRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use App\Module\TableReservation\Presentation\ReservePresentation;
 
 class FindActualByTableAction
