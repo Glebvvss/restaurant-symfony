@@ -1,5 +1,6 @@
+# MODULE TableReservation
 controllers:
-    resource: ../../src/Controller/
+    resource: ../../src/Module/TableReservation/Controller/
     type: annotation
 
 kernel:

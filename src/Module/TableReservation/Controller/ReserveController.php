@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Module\TableReservation\Controller;
 
 use DateTime;
 use App\Common\Api\Json\Api;
