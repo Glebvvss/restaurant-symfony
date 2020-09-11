@@ -19,7 +19,6 @@ final class Version20200902181517 extends AbstractMigration
 
     public function up(Schema $schema) : void
     {
-        // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE hall (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(20) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE reserve (id INT AUTO_INCREMENT NOT NULL, table_id INT DEFAULT NULL, time_from DATETIME NOT NULL, time_to DATETIME NOT NULL, INDEX IDX_1FE0EA22ECFF285C (table_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE `table` (id INT AUTO_INCREMENT NOT NULL, hall_id INT DEFAULT NULL, number INT NOT NULL, INDEX IDX_F6298F4652AFCFD6 (hall_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -29,7 +28,6 @@ final class Version20200902181517 extends AbstractMigration
 
     public function down(Schema $schema) : void
     {
-        // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE `table` DROP FOREIGN KEY FK_F6298F4652AFCFD6');
         $this->addSql('ALTER TABLE reserve DROP FOREIGN KEY FK_1FE0EA22ECFF285C');
         $this->addSql('DROP TABLE hall');

@@ -1,5 +1,8 @@
-# MODULE TableReservation
-controllers:
+Module_Authentication_Controllers:
+    resource: ../../src/Module/Authentication/Controller/
+    type: annotation
+
+Module_TableReservation_Controllers:
     resource: ../../src/Module/TableReservation/Controller/
     type: annotation
 
