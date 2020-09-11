@@ -13,9 +13,9 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    public function findOneByUserNameAndPasswordHash(string $username, string $passwordHash)
+    public function findOneByUsername(string $username)
     {
-        if ($rows = $this->findBy(['username' => $username, 'password' => $passwordHash])) {
+        if ($rows = $this->findBy(['username' => $username])) {
             return reset($rows);
         }
 
