@@ -4,9 +4,7 @@ security:
             algorithm: bcrypt
     providers:
         app_user_provider:
-            entity: 
-                class: App\Module\Authentication\Entity\User
-                property: username
+            id: App\Module\Authentication\Security\UserProvider
     firewalls:
         login:
             pattern: ^/login
@@ -25,5 +23,6 @@ security:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
     access_control:
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login,    roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/,         roles: IS_AUTHENTICATED_FULLY }

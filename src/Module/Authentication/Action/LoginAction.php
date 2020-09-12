@@ -2,42 +2,41 @@
 
 namespace App\Module\Authentication\Action;
 
-use Exception;
 use App\Common\Exception\ErrorReporting;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Module\Authentication\Entity\User;
+use App\Module\Authentication\Entity\Password;
 use App\Module\Authentication\Repository\UserRepository;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 
 class LoginAction
 {
-    private const INCORRECT_PASSWORD_ERROR_MSG = 'Incorrect password';
+    private const LOGIN_FAILED_ERROR_MSG = 'Login failed';
 
-    private const NO_SUCCESS_LOGIN_ERROR_MSG = 'No success login';
-
-    private UserRepository               $em;
+    private UserRepository               $userRepository;
     private JWTTokenManagerInterface     $jwtToken;
-    private UserPasswordEncoderInterface $passwordEncoder;
+    private UserPasswordEncoderInterface $encoder;
 
     public function __construct(
         EntityManagerInterface       $em,
         JWTTokenManagerInterface     $jwtToken,
-        UserPasswordEncoderInterface $passwordEncoder
+        UserPasswordEncoderInterface $encoder
     )
     {
         $this->jwtToken        = $jwtToken;
-        $this->passwordEncoder = $passwordEncoder;
+        $this->passwordEncoder = $encoder;
         $this->userRepository  = $em->getRepository(User::class);
     }
 
     public function handle(string $username, string $password)
     {
         $user = $this->userRepository->findOneByUsername($username);
-        if ($user->getPassword() !== $this->passwordEncoder->encodePassword($user, $password)) {
-            throw new ErrorReporting(static::INCORRECT_PASSWORD_ERROR_MSG);
+
+        if ($user->passwordNoMatched(new Password($password), $this->encoder)) {
+            throw new ErrorReporting(static::LOGIN_FAILED_ERROR_MSG);
         }
 
-        return ['token' => $jwtToken->create($user)];
+        return ['token' => $this->jwtToken->create($user)];
     }
 }

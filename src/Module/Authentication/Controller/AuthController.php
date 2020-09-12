@@ -3,12 +3,10 @@
 namespace App\Module\Authentication\Controller;
 
 use App\Common\Api\Json\Api;
-use App\Module\Authentication\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Module\Authentication\Action\LoginAction;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Module\Authentication\Action\RegisterAction;
 
 class AuthController
@@ -23,7 +21,7 @@ class AuthController
     /**
      * @Route("/register", methods={"POST"}, name="user-register")
      */
-    public function register(Request $request, RegisterAction $action)
+    public function register(Request $request, RegisterAction $action): Response
     {
         return $this->api
                     ->makeRequest(fn() => $action->handle(
@@ -37,7 +35,7 @@ class AuthController
     /**
      * @Route("/login", name="user-login")
      */
-    public function getTokenUser(Request $request, LoginAction $action): JsonResponse
+    public function getTokenUser(Request $request, LoginAction $action): Response
     {
         return $this->api
                     ->makeRequest(fn() => $action->handle(

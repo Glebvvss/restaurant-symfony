@@ -4,11 +4,16 @@ namespace App\Module\Authentication\Action;
 
 use Doctrine\ORM\EntityManagerInterface;
 use App\Module\Authentication\Entity\User;
+use App\Module\Authentication\Entity\Email;
+use App\Module\Authentication\Entity\Username;
+use App\Module\Authentication\Entity\Password;
+use App\Module\Authentication\Repository\UserRepository;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegisterAction
 {
     private UserPasswordEncoderInterface $passwordEncoder;
+    private UserRepository               $userRepository;
     private EntityManagerInterface       $em;
 
     public function __construct(
@@ -17,6 +22,7 @@ class RegisterAction
     )
     {
         $this->passwordEncoder = $passwordEncoder;
+        $this->userRepository  = $em->getRepository(User::class);
         $this->em              = $em;
     }
 
@@ -26,10 +32,14 @@ class RegisterAction
         string $email
     )
     {
-        $user = new User($username);
-        $user->setPassword($this->passwordEncoder->encodePassword($user, $password));
-        $user->setEmail($email);
-        $this->em->persist($user);
+        $user = new User(
+            new Username($username),
+            new Email($email),
+            new Password($password),
+            $this->passwordEncoder
+        );
+
+        $this->userRepository->persist($user);
         $this->em->flush();
     }
 }
