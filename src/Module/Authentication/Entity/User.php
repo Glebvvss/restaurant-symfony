@@ -13,6 +13,8 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface as Enco
  */
 class User implements UserInterface
 {
+    private const CURRENT_PASSWORD_INCORRECT_ERROR_MSG = 'Current password incorrect';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -44,7 +46,7 @@ class User implements UserInterface
     {
         $this->username = $username;
         $this->email    = $email;
-        $this->setPassword($password, $encoder);
+        $this->password = $encoder->encodePassword($this, $password);
     }
 
     public function getUsername()
@@ -57,16 +59,6 @@ class User implements UserInterface
         return (string) $this->password;
     }
 
-    public function setPassword(Password $password, EncoderInterface $encoder)
-    {
-        $this->password = $encoder->encodePassword($this, $password);
-    }
-
-    public function passwordNoMatched(Password $password, EncoderInterface $encoder)
-    {
-        return $encoder->encodePassword($this, $password) !== (string) $this->password;
-    }
-
     public function getEmail()
     {
         return (string) $this->email;
@@ -74,7 +66,25 @@ class User implements UserInterface
 
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return ['ROLE_USER'];
+    }
+
+    public function changePassword(
+        Password         $currentPassword, 
+        Password         $newPassword, 
+        EncoderInterface $encoder
+    )
+    {
+        if ($this->password !== $encoder->encodePassword($this, $currentPassword)) {
+            throw new ErrorReporting(static::CURRENT_PASSWORD_INCORRECT_ERROR_MSG);
+        }
+
+        $this->password = $encoder->encodePassword($this, $newPassword);
+    }
+
+    public function passwordNoMatched(Password $password, EncoderInterface $encoder)
+    {
+        return $encoder->encodePassword($this, $password) !== (string) $this->password;
     }
 
     public function getSalt() {}

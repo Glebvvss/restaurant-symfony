@@ -3,12 +3,15 @@
 namespace App\Module\Authentication\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Common\Exception\ErrorReporting;
 
 /**
  * @ORM\Embeddable
  */
 class Email
 {
+    private const IS_NOT_EMAIL_ERROR_MSG = 'Is not email';
+
     /**
      * @ORM\Column(type="string", length=45, unique=true)
      */
@@ -16,6 +19,12 @@ class Email
 
     public function __construct(string $email)
     {
+        $email = trim($email);
+
+        if (empty($email) || strpos('@')) {
+            throw new ErrorReporting(static::IS_NOT_EMAIL_ERROR_MSG);
+        }
+
         $this->email = $email;
     }
 
