@@ -47,7 +47,7 @@ class AuthController
     }
 
     /**
-     * @Route("/user/password", methods={"PUT"} name="user-login")
+     * @Route("/user/password", methods={"PUT"} name="user-change-password")
      */
     public function changePassword(Request $request, LoginAction $action): Response
     {

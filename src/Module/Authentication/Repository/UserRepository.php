@@ -5,6 +5,7 @@ namespace App\Module\Authentication\Repository;
 use App\Common\Exception\ErrorReporting;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Module\Authentication\Entity\User;
+use App\Module\Authentication\Entity\Username;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 class UserRepository extends ServiceEntityRepository
@@ -18,7 +19,7 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    public function findOneByUsername(string $username): User
+    public function findOneByUsername(Username $username): User
     {
         $user = $this->createQueryBuilder('u')
                      ->andWhere('u.username.username = :username')
@@ -33,7 +34,7 @@ class UserRepository extends ServiceEntityRepository
         throw new ErrorReporting(static::USER_NOT_FOUND_ERROR_MSG);
     }
 
-    public function usernameReserved(string $username): bool
+    public function usernameReserved(Username $username): bool
     {
         $user = $this->createQueryBuilder('u')
                      ->andWhere('u.username.username = :username')

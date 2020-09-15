@@ -21,7 +21,7 @@ class Email
     {
         $email = trim($email);
 
-        if (empty($email) || strpos('@')) {
+        if (empty($email) || mb_strpos('@') < 1) {
             throw new ErrorReporting(static::IS_NOT_EMAIL_ERROR_MSG);
         }
 

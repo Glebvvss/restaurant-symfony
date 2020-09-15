@@ -31,7 +31,7 @@ class LoginAction
 
     public function handle(string $username, string $password)
     {
-        $user = $this->userRepository->findOneByUsername($username);
+        $user = $this->userRepository->findOneByUsername(new Username($username));
 
         if ($user->passwordNoMatched(new Password($password), $this->encoder)) {
             throw new ErrorReporting(static::LOGIN_FAILED_ERROR_MSG);

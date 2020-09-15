@@ -51,17 +51,17 @@ class User implements UserInterface
 
     public function getUsername()
     {
-        return (string) $this->username;
+        return $this->username;
     }
 
     public function getPassword()
     {
-        return (string) $this->password;
+        return $this->password;
     }
 
     public function getEmail()
     {
-        return (string) $this->email;
+        return $this->email;
     }
 
     public function getRoles()

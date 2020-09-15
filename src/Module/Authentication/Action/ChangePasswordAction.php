@@ -32,7 +32,7 @@ class ChangePasswordAction
         string $newPassword
     )
     {
-        $user = $this->userRepository->findOneByUsername($username);
+        $user = $this->userRepository->findOneByUsername(new Username($username));
         $user->changePassword(
             new Password($currentPassword),
             new Password($newPassword),
