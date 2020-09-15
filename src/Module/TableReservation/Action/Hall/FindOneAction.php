@@ -18,10 +18,7 @@ class FindOneAction
 
     public function handle(int $id)
     {
-        $hall = new HallPresentation(
-            $this->hallRepository->findOne($id)
-        );
-
-        return $hall->toArray();
+        $hall = $this->hallRepository->findOne($id);
+        return (new HallPresentation($hall))->toArray();
     }
 }
