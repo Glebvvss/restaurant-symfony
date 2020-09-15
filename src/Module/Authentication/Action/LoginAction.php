@@ -12,31 +12,30 @@ use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 
 class LoginAction
 {
-    private const LOGIN_FAILED_ERROR_MSG = 'Login failed';
-
     private UserRepository               $userRepository;
-    private JWTTokenManagerInterface     $jwtToken;
+    private JWTTokenManagerInterface     $tokenFactory;
     private UserPasswordEncoderInterface $encoder;
 
     public function __construct(
         EntityManagerInterface       $em,
-        JWTTokenManagerInterface     $jwtToken,
+        JWTTokenManagerInterface     $tokenFactory,
         UserPasswordEncoderInterface $encoder
     )
     {
-        $this->jwtToken        = $jwtToken;
+        $this->tokenFactory    = $tokenFactory;
         $this->passwordEncoder = $encoder;
         $this->userRepository  = $em->getRepository(User::class);
     }
 
     public function handle(string $username, string $password)
     {
-        $user = $this->userRepository->findOneByUsername(new Username($username));
-
-        if ($user->passwordNoMatched(new Password($password), $this->encoder)) {
-            throw new ErrorReporting(static::LOGIN_FAILED_ERROR_MSG);
-        }
-
-        return ['token' => $this->jwtToken->create($user)];
+        $user  = $this->userRepository->findOneByUsername(new Username($username));
+        $token = $user->login(
+            new Username($username), 
+            new Password($password),
+            $this->encoder,
+            $this->tokenFactory
+        );
+        return ['token' => $token];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Module\Authentication\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use App\Module\Authentication\Repository\UserRepository;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface as EncoderInterface;
 
 /**
@@ -14,6 +15,8 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface as Enco
 class User implements UserInterface
 {
     private const CURRENT_PASSWORD_INCORRECT_ERROR_MSG = 'Current password incorrect';
+
+    private const LOGIN_FAILED_ERROR_MSG = 'Login failed';
 
     /**
      * @ORM\Id
@@ -54,11 +57,6 @@ class User implements UserInterface
         return $this->username;
     }
 
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
     public function getEmail()
     {
         return $this->email;
@@ -82,9 +80,18 @@ class User implements UserInterface
         $this->password = $encoder->encodePassword($this, $newPassword);
     }
 
-    public function passwordNoMatched(Password $password, EncoderInterface $encoder)
+    public function login(
+        Username                 $username, 
+        Password                 $password,
+        EncoderInterface         $encoder,
+        JWTTokenManagerInterface $tokenFactory
+    ): string
     {
-        return $encoder->encodePassword($this, $password) !== (string) $this->password;
+        if ($encoder->encodePassword($this, $password) === (string) $this->password) {
+            return $this->tokenFactory->create($this);    
+        }
+
+        throw new ErrorReporting(static::LOGIN_FAILED_ERROR_MSG);
     }
 
     public function getSalt() {}
