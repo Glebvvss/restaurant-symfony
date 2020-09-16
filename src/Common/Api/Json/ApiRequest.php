@@ -30,13 +30,11 @@ class ApiRequest implements ApiRequestInterface
                 $this->makeFailContent($ex->getMessage())
             );
         }
-        /*
         catch (Throwable $ex) {
             return new JsonResponse(
                 $this->makeFailContent('Unknown error')
             );
         }
-        */
     }
 
     private function makeOkContent(array $data)
