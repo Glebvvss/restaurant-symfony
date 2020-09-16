@@ -62,6 +62,11 @@ class User implements UserInterface
         return $this->email;
     }
 
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
     public function getRoles()
     {
         return ['ROLE_USER'];
