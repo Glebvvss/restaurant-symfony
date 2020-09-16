@@ -47,9 +47,9 @@ class AuthController
     }
 
     /**
-     * @Route("/user/password", methods={"PUT"} name="user-change-password")
+     * @Route("/user/password", methods={"PUT"}, name="user-change-password")
      */
-    public function changePassword(Request $request, LoginAction $action): Response
+    public function changePassword(Request $request, ChangePasswordAction $action): Response
     {
         return $this->api
                     ->makeRequest(fn() => $action->handle(
