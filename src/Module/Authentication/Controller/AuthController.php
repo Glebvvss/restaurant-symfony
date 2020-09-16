@@ -10,6 +10,8 @@ use App\Module\Authentication\Action\LoginAction;
 use App\Module\Authentication\Action\RegisterAction;
 use App\Module\Authentication\Action\ChangePasswordAction;
 
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 class AuthController
 {
     private Api $api;

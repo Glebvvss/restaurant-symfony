@@ -7,6 +7,7 @@ use App\Module\Authentication\Entity\User;
 use App\Module\Authentication\Entity\Email;
 use App\Module\Authentication\Entity\Username;
 use App\Module\Authentication\Entity\Password;
+use App\Module\Authentication\Entity\PasswordHash;
 use App\Module\Authentication\Repository\UserRepository;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -34,9 +35,14 @@ class ChangePasswordAction
     {
         $user = $this->userRepository->findOneByUsername(new Username($username));
         $user->changePassword(
-            new Password($currentPassword),
-            new Password($newPassword),
-            $this->passwordEncoder
+            new PasswordHash(
+                new Password($currentPassword),
+                $this->passwordEncoder
+            ),
+            new PasswordHash(
+                new Password($newPassword),
+                $this->passwordEncoder
+            )
         );
         $this->em->flush();
     }

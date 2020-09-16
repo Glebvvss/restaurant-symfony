@@ -19,7 +19,7 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    public function findOneByUsername(Username $username): User
+    public function findOneByUsername(string $username): User
     {
         $user = $this->createQueryBuilder('u')
                      ->andWhere('u.username.username = :username')
@@ -34,7 +34,7 @@ class UserRepository extends ServiceEntityRepository
         throw new ErrorReporting(static::USER_NOT_FOUND_ERROR_MSG);
     }
 
-    public function usernameReserved(Username $username): bool
+    public function usernameReserved(string $username): bool
     {
         $user = $this->createQueryBuilder('u')
                      ->andWhere('u.username.username = :username')

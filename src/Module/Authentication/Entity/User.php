@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use App\Module\Authentication\Repository\UserRepository;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface as EncoderInterface;
 
 /**
  * @ORM\Table(name="users")
@@ -41,15 +40,14 @@ class User implements UserInterface
     private Email $email;
 
     public function __construct(
-        Username         $username,
-        Email            $email,
-        Password         $password,
-        EncoderInterface $encoder
+        Username     $username,
+        Email        $email,
+        PasswordHash $password
     )
     {
         $this->username = $username;
         $this->email    = $email;
-        $this->password = $encoder->encodePassword($this, $password);
+        $this->password = $password;
     }
 
     public function getUsername()
@@ -73,26 +71,25 @@ class User implements UserInterface
     }
 
     public function changePassword(
-        Password         $currentPassword, 
-        Password         $newPassword, 
-        EncoderInterface $encoder
+        PasswordHash $currentPassword, 
+        PasswordHash $newPassword 
     )
     {
-        if ($this->password !== $encoder->encodePassword($this, $currentPassword)) {
+        if ($this->password !== $currentPassword) {
             throw new ErrorReporting(static::CURRENT_PASSWORD_INCORRECT_ERROR_MSG);
         }
 
-        $this->password = $encoder->encodePassword($this, $newPassword);
+        $this->password = $newPassword;
     }
 
     public function login(
         Username                 $username, 
-        Password                 $password,
+        PasswordHash             $password,
         EncoderInterface         $encoder,
         JWTTokenManagerInterface $tokenFactory
     ): string
     {
-        if ($encoder->encodePassword($this, $password) === (string) $this->password) {
+        if ($password === $this->password) {
             return $this->tokenFactory->create($this);    
         }
 

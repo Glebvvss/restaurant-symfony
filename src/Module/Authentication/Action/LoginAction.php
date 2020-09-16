@@ -14,16 +14,16 @@ class LoginAction
 {
     private UserRepository               $userRepository;
     private JWTTokenManagerInterface     $tokenFactory;
-    private UserPasswordEncoderInterface $encoder;
+    private UserPasswordEncoderInterface $passwordEncoder;
 
     public function __construct(
         EntityManagerInterface       $em,
         JWTTokenManagerInterface     $tokenFactory,
-        UserPasswordEncoderInterface $encoder
+        UserPasswordEncoderInterface $passwordEncoder
     )
     {
         $this->tokenFactory    = $tokenFactory;
-        $this->passwordEncoder = $encoder;
+        $this->passwordEncoder = $passwordEncoder;
         $this->userRepository  = $em->getRepository(User::class);
     }
 
@@ -32,8 +32,10 @@ class LoginAction
         $user  = $this->userRepository->findOneByUsername(new Username($username));
         $token = $user->login(
             new Username($username), 
-            new Password($password),
-            $this->encoder,
+            new PasswordHash(
+                new Password($password),
+                $this->passwordEncoder
+            ),
             $this->tokenFactory
         );
         return ['token' => $token];
