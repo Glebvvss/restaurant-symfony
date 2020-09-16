@@ -15,12 +15,11 @@ class CreateActionTest extends TestCase
 {
     use MockeryAssertions;
 
-    public function test_handle_success()
+    public function test_handle()
     {
         $repository = Mockery::spy(HallRepository::class);
-        $repository->shouldReceive('nameReserved')
-                   ->with('Main')
-                   ->andReturn(false);
+        $repository->shouldReceive('persist')
+                   ->with('Main');
 
         $em = Mockery::spy(EntityManager::class);
         $em->shouldReceive('getRepository')
@@ -40,23 +39,5 @@ class CreateActionTest extends TestCase
         );
 
         $this->assertMockerySpy($em);
-    }
-
-    public function test_handle_failed()
-    {
-        $this->expectException(ErrorReporting::class);
-
-        $repository = Mockery::spy(HallRepository::class);
-        $repository->shouldReceive('nameReserved')
-                   ->with('Main')
-                   ->andReturn(true);
-
-        $em = Mockery::spy(EntityManager::class);
-        $em->shouldReceive('getRepository')
-           ->with(Hall::class)
-           ->andReturn($repository);
-
-        $action = new CreateAction($em);
-        $action->handle('Main');
     }
 }

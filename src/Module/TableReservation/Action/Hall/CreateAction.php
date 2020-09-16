@@ -10,8 +10,6 @@ use App\Module\TableReservation\Presentation\HallPresentation;
 
 class CreateAction
 {
-    private const HALL_NAME_RESERVED_ERROR_MSG = 'Hall name already reserved';
-
     private EntityManagerInterface $em;
     private HallRepository         $hallRepository;
 
@@ -23,12 +21,8 @@ class CreateAction
 
     public function handle(string $name)
     {
-        if ($this->hallRepository->nameReserved($name)) {
-            throw new ErrorReporting(static::HALL_NAME_RESERVED_ERROR_MSG);
-        }
-
         $hall = new Hall($name);
-        $this->em->persist($hall);
+        $this->hallRepository->persist($hall);
         $this->em->flush();
         return (new HallPresentation($hall))->toArray();
     }
