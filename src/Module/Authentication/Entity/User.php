@@ -15,8 +15,6 @@ class User implements UserInterface
 {
     private const CURRENT_PASSWORD_INCORRECT_ERROR_MSG = 'Current password incorrect';
 
-    private const LOGIN_FAILED_ERROR_MSG = 'Login failed';
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -82,18 +80,9 @@ class User implements UserInterface
         $this->password = $newPassword;
     }
 
-    public function login(
-        Username                 $username, 
-        PasswordHash             $password,
-        EncoderInterface         $encoder,
-        JWTTokenManagerInterface $tokenFactory
-    ): string
+    public function passwordIncorrect(PasswordHash $password): bool
     {
-        if ($password === $this->password) {
-            return $this->tokenFactory->create($this);    
-        }
-
-        throw new ErrorReporting(static::LOGIN_FAILED_ERROR_MSG);
+        return $password !== $this->password;
     }
 
     public function getSalt() {}

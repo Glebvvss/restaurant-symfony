@@ -2,6 +2,7 @@
 
 namespace App\Module\Authentication\Action;
 
+use Throwble;
 use App\Common\Exception\ErrorReporting;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Module\Authentication\Entity\User;
@@ -12,6 +13,9 @@ use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 
 class LoginAction
 {
+    private const PASSWORD_INCORRECT_ERROR_MSG = 'Password incorrect';
+    private const LOGIN_FAILED_ERROR_MSG = 'Login failed';
+
     private UserRepository               $userRepository;
     private JWTTokenManagerInterface     $tokenFactory;
     private UserPasswordEncoderInterface $passwordEncoder;
@@ -29,15 +33,21 @@ class LoginAction
 
     public function handle(string $username, string $password)
     {
-        $user  = $this->userRepository->findOneByUsername(new Username($username));
-        $token = $user->login(
-            new Username($username), 
-            new PasswordHash(
+        try {
+            $user = $this->userRepository->findOneByUsername(new Username($username));
+
+            $passwordHash = new PasswordHash(
                 new Password($password),
                 $this->passwordEncoder
-            ),
-            $this->tokenFactory
-        );
-        return ['token' => $token];
+            );
+
+            if ($user->passwordIncorrect($passwordHash)) {
+                throw new ErrorReporting(static::PASSWORD_INCORRECT_ERROR_MSG);        
+            }
+
+            return ['token' => $this->tokenFactory->create($user)];    
+        } catch (Throwble $ex) {
+            throw new ErrorReporting(static::LOGIN_FAILED_ERROR_MSG);    
+        } 
     }
 }
