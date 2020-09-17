@@ -10,7 +10,7 @@ use App\Common\Exception\ErrorReporting;
  */
 class Username
 {
-    private const USERNAME_FORMAT_ERROR_MSG = 'Username must not be emtry string and has length less than 1 symbol';
+    private const USERNAME_FORMAT_ERROR_MSG = 'Username must not be emtry string and has length less than 2 symbols';
 
     /**
      * @ORM\Column(type="string", length=25, unique=true)
@@ -21,7 +21,7 @@ class Username
     {
         $username = trim($username);
 
-        if (mb_strlen($username) < 1) {
+        if (mb_strlen($username) < 2) {
             throw new ErrorReporting(static::USERNAME_FORMAT_ERROR_MSG);
         }
 
