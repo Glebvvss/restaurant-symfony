@@ -3,6 +3,7 @@
 namespace App\Module\Authentication\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Common\Exception\ErrorReporting;
 use Symfony\Component\Security\Core\User\UserInterface;
 use App\Module\Authentication\Repository\UserRepository;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
@@ -73,11 +74,11 @@ class User implements UserInterface
         PasswordHash $newPassword 
     )
     {
-        if ($this->password !== $currentPassword) {
+        if ($this->password !== (string) $currentPassword) {
             throw new ErrorReporting(static::CURRENT_PASSWORD_INCORRECT_ERROR_MSG);
         }
 
-        $this->password = $newPassword;
+        $this->password = (string) $newPassword;
     }
 
     public function passwordIncorrect(PasswordHash $password): bool
