@@ -2,7 +2,10 @@
 
 namespace App\Test\Module\Authentication\Entity;
 
+require_once __DIR__ . '/../../../Stub/PasswordEncoderStub.php';
+
 use PHPUnit\Framework\TestCase;
+use App\Test\Stub\PasswordEncoderStub;
 use App\Common\Exception\ErrorReporting;
 use App\Module\Authentication\Entity\Password;
 use App\Module\Authentication\Entity\PasswordHash;
@@ -18,32 +21,12 @@ class PasswordHashTest extends TestCase
     {
         $passwordHash = new PasswordHash(
             new Password(self::CORRECT_PASSWORD),
-            $this->passwordEncoderStub()
+            new PasswordEncoderStub()
         );
 
         $this->assertSame(
             (string) $passwordHash,
             self::STUB_PASSWORD_HASH
         );
-    }
-
-    private function passwordEncoderStub()
-    {
-        return new class() implements UserPasswordEncoderInterface
-        {
-            public function encodePassword(UserInterface $user, string $plainPassword)
-            {
-                return $plainPassword;
-            }
-
-            public function isPasswordValid(UserInterface $user, string $raw)
-            {
-            }
-
-            public function needsRehash(UserInterface $user): bool
-            {
-                return false;
-            }
-        };
     }
 }
