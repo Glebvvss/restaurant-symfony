@@ -83,7 +83,7 @@ class User implements UserInterface
 
     public function passwordIncorrect(PasswordHash $password): bool
     {
-        return $password !== $this->password;
+        return $this->password !== (string) $password;
     }
 
     public function getSalt() {}
