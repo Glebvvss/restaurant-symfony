@@ -21,7 +21,7 @@ class RegisterActionTest extends TestCase
     const EMAIL    = 'john@mayer.com';
     const PASSWORD = 'password';
 
-    public function test_execute_success()
+    public function test_handle()
     {
         $repository = Mockery::spy(UserRepository::class);
         $repository->shouldReceive('persist');
