@@ -17,11 +17,11 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserTest extends TestCase
 {
-    const USERNAME          = 'John';
-    const EMAIL             = 'john@mayer.com';
-    const PASSWORD          = 'password';
-    const NEW_PASSWORD      = 'new-password';
-    const NEW_PASSWORD_HASH = 'new-password';
+    const USERNAME            = 'John';
+    const EMAIL               = 'john@mayer.com';
+    const PASSWORD            = 'password';
+    const OTHER_PASSWORD      = 'other-password';
+    const OTHER_PASSWORD_HASH = 'other-password';
 
     public function test_common()
     {
@@ -60,12 +60,12 @@ class UserTest extends TestCase
                 new PasswordEncoderStub()
             ),
             new PasswordHash(
-                new Password(self::NEW_PASSWORD),
+                new Password(self::OTHER_PASSWORD),
                 new PasswordEncoderStub()
             )
         );
 
-        $this->assertSame($user->getPassword(), self::NEW_PASSWORD_HASH);
+        $this->assertSame($user->getPassword(), self::OTHER_PASSWORD_HASH);
     }
 
     public function test_changePassword_failedWithIncorrectCurrentPassword()
@@ -87,9 +87,47 @@ class UserTest extends TestCase
                 new PasswordEncoderStub()
             ),
             new PasswordHash(
-                new Password(self::NEW_PASSWORD),
+                new Password(self::OTHER_PASSWORD),
                 new PasswordEncoderStub()
             )
         );
+    }
+
+    public function test_passwordIncorrect_returnTrue()
+    {
+        $user = new User(
+            new Username(self::USERNAME),
+            new Email(self::EMAIL),
+            new PasswordHash(
+                new Password(self::PASSWORD),
+                new PasswordEncoderStub()
+            )
+        );
+
+        $this->assertTrue($user->passwordIncorrect(
+            new PasswordHash(
+                new Password(self::OTHER_PASSWORD),
+                new PasswordEncoderStub()
+            )
+        ));
+    }
+
+    public function test_passwordIncorrect_returnFalse()
+    {
+        $user = new User(
+            new Username(self::USERNAME),
+            new Email(self::EMAIL),
+            new PasswordHash(
+                new Password(self::PASSWORD),
+                new PasswordEncoderStub()
+            )
+        );
+
+        $this->assertFalse($user->passwordIncorrect(
+            new PasswordHash(
+                new Password(self::PASSWORD),
+                new PasswordEncoderStub()
+            )
+        ));
     }
 }
