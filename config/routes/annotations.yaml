@@ -2,6 +2,10 @@ Module_Authentication_Controllers:
     resource: ../../src/Module/Authentication/Controller/
     type: annotation
 
+Module_Statistics_Controllers:
+    resource: ../../src/Module/Statistics/Controller/
+    type: annotation
+
 Module_TableReservation_Controllers:
     resource: ../../src/Module/TableReservation/Controller/
     type: annotation

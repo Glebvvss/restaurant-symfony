@@ -17,6 +17,12 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Module/Authentication'
                 prefix: 'App\Module\Authentication\Entity'
 
+            Module_Statistics:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Module/Statistics'
+                prefix: 'App\Module\Statistics\Entity'
+
             Module_TableReservation:
                 is_bundle: false
                 type: annotation

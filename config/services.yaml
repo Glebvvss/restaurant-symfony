@@ -18,6 +18,11 @@ services:
         resource: '../src/Module/Authentication/Controller/'
         tags: ['controller.service_arguments']
 
+    # MODULE Statistics
+    App\Module\Statistics\Controller\:
+        resource: '../src/Module/Statistics/Controller/'
+        tags: ['controller.service_arguments']
+
     # MODULE TableReservation
     App\Module\TableReservation\Controller\:
         resource: '../src/Module/TableReservation/Controller/'
