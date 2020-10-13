@@ -54,9 +54,9 @@ class ReserveController
                     ->makeRequest(fn() => $action->handle(
                         $hallId,
                         $tableNumber,
-                        json_decode($request->getContent())->client_name,
-                        new DateTime(json_decode($request->getContent())->time_from),
-                        new DateTime(json_decode($request->getContent())->time_to)
+                        $request->get('client_name'),
+                        new DateTime($request->get('time_from')),
+                        new DateTime($request->get('time_to'))
                     ))
                     ->buildResponse();
     }

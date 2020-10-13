@@ -47,7 +47,7 @@ class TableController
         return $this->api
                     ->makeRequest(fn() => $action->handle(
                         $hallId,
-                        json_decode($request->getContent())->number
+                        $request->get('number')
                     ))
                     ->buildResponse();
     }

@@ -47,7 +47,7 @@ class HallController
     {
         return $this->api
                     ->makeRequest(fn() => $action->handle(
-                        json_decode($request->getContent())->name
+                        $request->get('name')
                     ))
                     ->buildResponse();
     }
@@ -64,7 +64,7 @@ class HallController
         return $this->api
                     ->makeRequest(fn() => $action->handle(
                         $id,
-                        json_decode($request->getContent())->name
+                        $request->get('name')
                     ))
                     ->buildResponse();
     }

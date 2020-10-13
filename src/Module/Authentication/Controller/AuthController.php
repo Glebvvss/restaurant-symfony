@@ -26,9 +26,9 @@ class AuthController
     {
         return $this->api
                     ->makeRequest(fn() => $action->handle(
-                        json_decode($request->getContent())->username,
-                        json_decode($request->getContent())->password,
-                        json_decode($request->getContent())->email
+                        $request->get('username'),
+                        $request->get('password'),
+                        $request->get('email')
                     ))
                     ->buildResponse();
     }
@@ -40,8 +40,8 @@ class AuthController
     {
         return $this->api
                     ->makeRequest(fn() => $action->handle(
-                        json_decode($request->getContent())->username,
-                        json_decode($request->getContent())->password
+                        $request->get('username'),
+                        $request->get('password')
                     ))
                     ->buildResponse();
     }
@@ -53,9 +53,9 @@ class AuthController
     {
         return $this->api
                     ->makeRequest(fn() => $action->handle(
-                        json_decode($request->getContent())->username,
-                        json_decode($request->getContent())->current_password,
-                        json_decode($request->getContent())->new_password
+                        $request->get('username'),
+                        $request->get('current_password'),
+                        $request->get('new_password')
                     ))
                     ->buildResponse();
     }
