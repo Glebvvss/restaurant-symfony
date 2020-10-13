@@ -38,16 +38,11 @@ class LoginAction
         try {
             $user = $this->userRepository->findOneByUsername(new Username($username));
 
-            $passwordHash = new PasswordHash(
-                new Password($password),
-                $this->passwordEncoder
-            );
-
-            if ($user->passwordIncorrect($passwordHash)) {
-                throw new ErrorReporting(static::PASSWORD_INCORRECT_ERROR_MSG);        
+            if ($this->passwordEncoder->isPasswordValid($user, (string) new Password($password))) {
+                return ['token' => $this->tokenFactory->create($user)];    
             }
 
-            return ['token' => $this->tokenFactory->create($user)];    
+            throw new ErrorReporting(static::PASSWORD_INCORRECT_ERROR_MSG);
         } catch (Throwble $ex) {
             throw new ErrorReporting(static::LOGIN_FAILED_ERROR_MSG);    
         } 

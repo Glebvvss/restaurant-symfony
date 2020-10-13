@@ -14,6 +14,7 @@ class PasswordEncoderStub implements UserPasswordEncoderInterface
 
     public function isPasswordValid(UserInterface $user, string $raw)
     {
+        return $user->getPassword() === $raw;
     }
 
     public function needsRehash(UserInterface $user): bool

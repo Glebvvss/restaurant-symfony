@@ -55,14 +55,9 @@ class UserTest extends TestCase
         );
 
         $user->changePassword(
-            new PasswordHash(
-                new Password(self::PASSWORD),
-                new PasswordEncoderStub()
-            ),
-            new PasswordHash(
-                new Password(self::OTHER_PASSWORD),
-                new PasswordEncoderStub()
-            )
+            new Password(self::PASSWORD),
+            new Password(self::OTHER_PASSWORD),
+            new PasswordEncoderStub()
         );
 
         $this->assertSame($user->getPassword(), self::OTHER_PASSWORD_HASH);
@@ -82,14 +77,9 @@ class UserTest extends TestCase
         );
 
         $user->changePassword(
-            new PasswordHash(
-                new Password('Incorrect current password'),
-                new PasswordEncoderStub()
-            ),
-            new PasswordHash(
-                new Password(self::OTHER_PASSWORD),
-                new PasswordEncoderStub()
-            )
+            new Password('Incorrect current password'),
+            new Password(self::OTHER_PASSWORD),
+            new PasswordEncoderStub()
         );
     }
 

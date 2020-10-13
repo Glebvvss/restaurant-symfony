@@ -35,14 +35,9 @@ class ChangePasswordAction
     {
         $user = $this->userRepository->findOneByUsername(new Username($username));
         $user->changePassword(
-            new PasswordHash(
-                new Password($currentPassword),
-                $this->passwordEncoder
-            ),
-            new PasswordHash(
-                new Password($newPassword),
-                $this->passwordEncoder
-            )
+            new Password($currentPassword),
+            new Password($newPassword),
+            $this->passwordEncoder
         );
         $this->em->flush();
     }

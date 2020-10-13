@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Common\Exception\ErrorReporting;
 use Symfony\Component\Security\Core\User\UserInterface;
 use App\Module\Authentication\Repository\UserRepository;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 
 /**
@@ -70,12 +71,13 @@ class User implements UserInterface
     }
 
     public function changePassword(
-        PasswordHash $currentPassword, 
-        PasswordHash $newPassword 
+        Password                     $currentPassword, 
+        Password                     $newPassword,
+        UserPasswordEncoderInterface $passwordEncoder
     )
     {
-        if ($this->password !== (string) $currentPassword) {
-            throw new ErrorReporting(static::CURRENT_PASSWORD_INCORRECT_ERROR_MSG);
+        if (!$passwordEncoder->isPasswordValid($this, (string) $currentPassword)) {
+            throw new ErrorReporting(static::CURRENT_PASSWORD_INCORRECT_ERROR_MSG);    
         }
 
         $this->password = (string) $newPassword;
